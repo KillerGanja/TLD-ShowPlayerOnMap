@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <AssemblyName>ShowPlayerOnMap</AssemblyName>
+    <Version>1.0.0</Version>
+    <Nullable>disable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <!-- Path to your The Long Dark installation (with MelonLoader installed and the game started once).
+         Override on the command line: dotnet build -c Release -p:TLDPath="/path/to/TheLongDark" -->
+    <TLDPath Condition="'$(TLDPath)' == '' And '$(OS)' == 'Windows_NT'">C:\Program Files (x86)\Steam\steamapps\common\TheLongDark</TLDPath>
+    <TLDPath Condition="'$(TLDPath)' == ''">$(HOME)/.local/share/Steam/steamapps/common/TheLongDark</TLDPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="$(TLDPath)/MelonLoader/net6/*.dll" Private="false" />
+    <Reference Include="$(TLDPath)/MelonLoader/Il2CppAssemblies/*.dll" Private="false" />
+  </ItemGroup>
+</Project>
